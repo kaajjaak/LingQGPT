@@ -101,14 +101,17 @@ def create_lesson():
     pass
 
 
-def create_lesson_in_collection(title, text, collection=1288847, description="", language_code="ja"):
+def create_lesson_in_collection(title, text, collection=1288847, description="", language_code="ja", level=1):
+    print(level)
     payload = {
-        "collection": collection,
+        "collection": int(collection),
         "description": description,
         "language": language_code,
         "save": True,
         "status": "private",
         "text": text,
-        "title": title
+        "title": title,
+        "level": int(level),
     }
     response = requests.post(f"https://www.lingq.com/api/v3/{language_code}/lessons/import/", headers=headers, json=payload)
+    return response.json()

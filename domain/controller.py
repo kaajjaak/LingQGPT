@@ -3,20 +3,21 @@ import re
 import domain.lingq_domain as LingQ
 import domain.openai_domain as OpenAI
 
+import re
 
-def generate_story_from_lingqs():
-    lingqs = LingQ.get_most_important_lingqs(30)
+from util.extract_information import text_to_title_level_story
+
+
+def generate_story_from_lingqs(amount=10, page=1):
+    lingqs = LingQ.get_most_important_lingqs(amount, page=page)
     text = OpenAI.write_story_from_words(lingqs)
-    title_regex = r'Title:(.+)\n'
-    title_match = re.search(title_regex, text)
+    return text_to_title_level_story(text)
 
-    if title_match:
-        title = title_match.group(1).strip()
-        story_start = title_match.end()
-        story = text[story_start:].strip()
-        return title, story
-    else:
-        return None, None
+
+def generate_story_from_lingqs_and_theme(amount=10, page=1, theme=""):
+    lingqs = LingQ.get_most_important_lingqs(amount, page=page)
+    text = OpenAI.write_story_from_words_and_theme(lingqs, theme)
+    return text_to_title_level_story(text)
 
 
 def add_collection_to_lingq(title, description, language="ja"):
@@ -24,5 +25,7 @@ def add_collection_to_lingq(title, description, language="ja"):
     return collection
 
 
-def add_story_to_collection(title, text, language="ja", description="", collection_id=None):
-    LingQ.add_story_to_collection(title, text)
+def add_story_to_collection(title, text, language="ja", description="", level=1):
+    if title is None:
+        title = "Untitled"
+    return LingQ.add_story_to_collection(title, text, language, description, level)["lessonURL"]
