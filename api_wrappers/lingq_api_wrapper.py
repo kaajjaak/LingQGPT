@@ -68,7 +68,6 @@ def get_lesson_info(language_code="ja", lesson_id=0):
 
 def get_lingqs_to_learn(language_code="ja", page_size=100, search_criteria="startsWith", sort="importance",
                         status=[1, 2], page=1):
-    # https://www.lingq.com/api/v3/ja/cards/?page=1&page_size=200&search_criteria=startsWith&sort=importance&status=1&status=2
     payload = {
         "page": page,
         "page_size": page_size,
@@ -78,3 +77,38 @@ def get_lingqs_to_learn(language_code="ja", page_size=100, search_criteria="star
     }
     response = requests.get(f'https://www.lingq.com/api/v3/{language_code}/cards', headers=headers, params=payload)
     return response.json()
+
+
+def create_collection(title, description, language_code="ja"):
+    payload = {
+        "title": title,
+        "description": description,
+        "hasPrice": False,
+        "isFeatured": False,
+        "language": language_code,
+        "sellAll": False,
+        "sourceURLEnabled": False,
+        "tags": [],
+    }
+    response = requests.post(f"https://www.lingq.com/api/v3/{language_code}/collections/", headers=headers,
+                             json=payload)
+    print(response)
+    print(response.json())
+    return response.json()
+
+
+def create_lesson():
+    pass
+
+
+def create_lesson_in_collection(title, text, collection=1288847, description="", language_code="ja"):
+    payload = {
+        "collection": collection,
+        "description": description,
+        "language": language_code,
+        "save": True,
+        "status": "private",
+        "text": text,
+        "title": title
+    }
+    response = requests.post(f"https://www.lingq.com/api/v3/{language_code}/lessons/import/", headers=headers, json=payload)

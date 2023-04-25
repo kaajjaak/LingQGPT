@@ -1,6 +1,4 @@
-import domain.lingq_domain as LingQ
+import domain.controller as controller
 
-print(LingQ.get_most_important_lingqs(30))
-
-
-
+title, story = controller.generate_story_from_lingqs()
+controller.add_story_to_collection(title, story)
