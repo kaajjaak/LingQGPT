@@ -1,3 +1,5 @@
+import urllib.parse
+
 import requests
 import os
 from dotenv import load_dotenv
@@ -119,11 +121,15 @@ def create_lesson_in_collection(title, text, collection=1288847, description="",
 
 def check_word_status(word, language_code="ja"):
     payload = {
+        "page": 1,
+        "page_size": 25,
         "search": word,
-        "search_criteria": "startsWith"
+        "search_criteria": "startsWith",
+        "sort": "alpha"
+        # "status": list(range(0, 5))
     }
-    response = requests.get(f"https://www.lingq.com/api/v3/{language_code}/cards/", headers=headers, json=payload)
+    response = requests.get(f"https://www.lingq.com/api/v3/{language_code}/cards/", headers=headers, params=payload)
     return response.json()
 
 
-print(check_word_status("漢字", "ja"))
+print(check_word_status("し ました", "ja"))

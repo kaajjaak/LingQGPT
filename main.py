@@ -1,7 +1,7 @@
 import domain.controller as controller
 
-title, story, level = controller.generate_story_from_lingqs(10, 5)
-# title, story, level = controller.generate_story_from_lingqs_and_theme(10, 3, "technology")
+title, story, level = controller.generate_story_from_lingqs(15, 1)
+# title, story, level = controller.generate_story_from_lingqs_and_theme(20, 1, "technology")
 print(title)
 print(story)
 print(level)
