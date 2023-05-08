@@ -1,2 +1,4 @@
 .env
 .idea
+anki_decks/*
+word_lists/*

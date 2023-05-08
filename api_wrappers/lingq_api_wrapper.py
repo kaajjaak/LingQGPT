@@ -102,7 +102,6 @@ def create_lesson():
 
 
 def create_lesson_in_collection(title, text, collection=1288847, description="", language_code="ja", level=1):
-    print(level)
     payload = {
         "collection": int(collection),
         "description": description,
@@ -113,5 +112,18 @@ def create_lesson_in_collection(title, text, collection=1288847, description="",
         "title": title,
         "level": int(level),
     }
-    response = requests.post(f"https://www.lingq.com/api/v3/{language_code}/lessons/import/", headers=headers, json=payload)
+    response = requests.post(f"https://www.lingq.com/api/v3/{language_code}/lessons/import/", headers=headers,
+                             json=payload)
     return response.json()
+
+
+def check_word_status(word, language_code="ja"):
+    payload = {
+        "search": word,
+        "search_criteria": "startsWith"
+    }
+    response = requests.get(f"https://www.lingq.com/api/v3/{language_code}/cards/", headers=headers, json=payload)
+    return response.json()
+
+
+print(check_word_status("漢字", "ja"))
