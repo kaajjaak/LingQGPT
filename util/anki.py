@@ -17,3 +17,16 @@ def get_word_count(filename):
         lines = wordlist.readlines()
         word_count = len(lines)
     return word_count
+
+
+def get_first_words(filename, amount, start=0):
+    with open(f'../word_lists/{filename}.txt', 'r', encoding='utf8') as wordlist:
+        lines = wordlist.readlines()
+        first_words = lines[start:amount]
+    return first_words
+
+
+def get_all_words(filename):
+    with open(f'../word_lists/{filename}.txt', 'r', encoding='utf8') as wordlist:
+        lines = wordlist.readlines()
+    return lines

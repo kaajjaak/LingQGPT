@@ -130,6 +130,3 @@ def check_word_status(word, language_code="ja"):
     }
     response = requests.get(f"https://www.lingq.com/api/v3/{language_code}/cards/", headers=headers, params=payload)
     return response.json()
-
-
-print(check_word_status("し ました", "ja"))

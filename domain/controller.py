@@ -29,3 +29,9 @@ def add_story_to_collection(title, text, language="ja", description="", level=1)
     if title is None:
         title = "Untitled"
     return LingQ.add_story_to_collection(title, text, language, description, level)["lessonURL"]
+
+
+def generate_story_from_file(filename, amount=10):
+    words = LingQ.get_words_from_file(filename)[:amount]
+    text = OpenAI.write_story_from_words(words)
+    return text_to_title_level_story(text)
