@@ -35,3 +35,11 @@ def generate_story_from_file(filename, amount=10):
     words = LingQ.get_words_from_file(filename)[:amount]
     text = OpenAI.write_story_from_words(words)
     return text_to_title_level_story(text)
+
+
+def recheck_words_from_file(filename, amount):
+    LingQ.persist_words_status(filename, LingQ.check_words_status(LingQ.get_words_from_file(filename)[:amount]))
+
+
+def recheck_all_words_from_file(filename):
+    LingQ.persist_words_status(filename, LingQ.check_words_status(LingQ.get_words_from_file(filename)))
