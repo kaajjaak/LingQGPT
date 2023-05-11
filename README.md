@@ -1,6 +1,8 @@
-# Outlook Generator
+# LingQ GPT
 
-Outlook Generator is an automation tool that creates Outlook accounts and stores the email addresses and passwords of the generated accounts. This project leverages Selenium for web automation, the Nopecha extension to solve CAPTCHAs, and WireGuard to bypass IP limitations.
+A python program to generate mini stories for LingQ using the OpenAI API. It currently also supports generating stories from word lists and from most important LingQs.
+
+This tool has helped me somewhat for language learning, however it did not give me the results I was hoping for so be sure to not overly rely on this tool in case you decide you want to use it.
 
 ## Getting Started
 
