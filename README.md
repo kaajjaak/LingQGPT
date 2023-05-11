@@ -10,7 +10,7 @@ This tool has helped me somewhat for language learning, however it did not give 
 
 2. Install the required packages: `pip install -r requirements.txt`
     
-3. Configure the settings: rename the .env.template file to .env and fill in the required API keys, you can get LingQ key [here](https://www.lingq.com/accounts/apikey/)
+3. Configure the settings: rename the .env.template file to .env and fill in the required API keys, you can get your LingQ API key [here](https://www.lingq.com/accounts/apikey/)
 
 ## Deployment
 
